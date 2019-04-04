@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class PicContainer extends Component {
+class Container extends Component {
     render(){
         return (
-            <div>
+            <div className="bg-primary">
                 Hello There
             </div>
         )
     }
 } 
 
-export default PicContainer
+export default Container
