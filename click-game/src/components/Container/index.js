@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Container extends Component {
-    render(){
+function Container(props) {
         return (
+            <div>
+            <p>Hello</p>
             <div className="bg-primary">
-                Hello There
+                {props.children}
+            </div>
             </div>
         )
-    }
 } 
 
 export default Container

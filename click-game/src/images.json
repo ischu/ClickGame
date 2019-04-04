@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "circle",
+        "url": "https://i2.wp.com/www.timvandevall.com/wp-content/uploads/2014/03/Geometric-Shapes-Circle.jpg?resize=200%2C200&ssl=1"
+    },
+    {
+        "id": 2,
+        "name": "square",
+        "url": "https://i0.wp.com/www.timvandevall.com/wp-content/uploads/2014/03/Geometric-Shapes-Square.jpg?resize=200%2C200&ssl=1"
+    },
+    {
+        "id": 3,
+        "name": "rectangle",
+        "url": "https://i0.wp.com/www.timvandevall.com/wp-content/uploads/2014/03/Geometric-Shapes-Rectangle.jpg?resize=200%2C200&ssl=1"
+    },
+    {
+        "id": 4,
+        "name": "triangle",
+        "url": "https://i0.wp.com/www.timvandevall.com/wp-content/uploads/2014/03/Geometric-Shapes-Triangle.jpg?resize=200%2C200&ssl=1"
+    }
+]
