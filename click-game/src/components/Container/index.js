@@ -2,11 +2,8 @@ import React from 'react';
 
 function Container(props) {
         return (
-            <div>
-            <p>Hello</p>
-            <div className="bg-primary">
+            <div className=" container d-flex bg-primary">
                 {props.children}
-            </div>
             </div>
         )
 } 
