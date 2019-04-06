@@ -15,7 +15,8 @@ class App extends Component {
     score: 0,
     highScore: 0,
     correct: true,
-    clicked: []
+    clicked: [],
+    gameOver: null
   }
   // METHODS
 
@@ -78,7 +79,7 @@ class App extends Component {
     // copy of clicked array
     const idArray = this.state.clicked.slice(0);
     // find if target card id is in array
-    const isInArr = idArray.find((num) => num === cardId);
+    const isInArr = idArray.includes(cardId);
     // if clicked card's id is in array of clicked cards
     const tern = (found) => {
       found ?
@@ -134,6 +135,7 @@ class App extends Component {
         <Header />
         <Scoreboard
           correct={this.state.correct}
+          gameOver={this.state.gameOver}
           score={this.state.score}
           highScore={this.state.highScore}
         />
