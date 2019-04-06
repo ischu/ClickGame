@@ -6,7 +6,7 @@ function Scoreboard(props) {
     return (
         <div className="d-flex mx-3">
             <span id="banner">
-                {props.gameOver || (props.correct?"Correct":"Incorrect")}
+                {props.gameOver || (props.correct?"Correct":"Incorrect-You Lose")}
             </span>
             <hr/>
             <span id="scoreCounters">

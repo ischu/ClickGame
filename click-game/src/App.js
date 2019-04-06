@@ -73,42 +73,38 @@ class App extends Component {
   // function to check if guess is correct
   checkClicked = (event) => {
     this.setState({
-      correct:true
+      correct: true,
+      gameOver: null
     })
     const cardId = parseInt(event.target.id);
     // copy of clicked array
     const idArray = this.state.clicked.slice(0);
-    // find if target card id is in array
-    const isInArr = idArray.includes(cardId);
     // if clicked card's id is in array of clicked cards
-    const tern = (found) => {
-      found ?
-        this.loseGame()
-        :
-        this.increaseScore()
-    };
-    tern(isInArr);
-    // update array of clicked items 
-    idArray.push(cardId);
-    this.setState(
-      { clicked: idArray }
-    )
-    // check if player has won the game
-    this.winGameCheck(idArray)
+    if (idArray.includes(cardId)) { this.loseGame() }
+    else {
+      this.increaseScore()
+      // update array of clicked items 
+      idArray.push(cardId);
+      this.setState(
+        { clicked: idArray }
+      )
+      // check if player has won the game
+      this.winGameCheck(idArray)
+    }
+  };
 
-  }
   winGameCheck = (array) => {
-    if (array.length >= 4) {
-      console.log("YOU WON");
+    if (array.length === 4) {
+      this.setState({
+        gameOver: "You Win!"
+      });
       this.newGame();
-    } else
-      console.log("keep playing");
+    }
   }
   loseGame = () => {
     this.setState({
       correct: false
     })
-    console.log("you lost")
     this.newGame()
   }
 
