@@ -70,41 +70,52 @@ class App extends Component {
   }
 
   // function to check if guess is correct
-  checkClicked = (event, cb) => {
+  checkClicked = (event) => {
+    this.setState({
+      correct:true
+    })
     const cardId = parseInt(event.target.id);
     // copy of clicked array
     const idArray = this.state.clicked.slice(0);
     // find if target card id is in array
     const isInArr = idArray.find((num) => num === cardId);
     // if clicked card's id is in array of clicked cards
-    if (isInArr) {
-      // incorrect
-      this.setState(
-        { correct: false }
-      )
-    }
-    else {
-      // correct- set clicked array
-      idArray.push(cardId);
-      this.setState(
-        { clicked: idArray }
-      )
-    }
-    cb(this.state.clicked, this.state.correct)
+    const tern = (found) => {
+      found ?
+        this.loseGame()
+        :
+        this.increaseScore()
+    };
+    tern(isInArr);
+    // update array of clicked items 
+    idArray.push(cardId);
+    this.setState(
+      { clicked: idArray }
+    )
+    // check if player has won the game
+    this.winGameCheck(idArray)
+
   }
-  checkIfWinLoss = (array, boolean) => {
+  winGameCheck = (array) => {
     if (array.length >= 4) {
-      console.log("YOU WON")
+      console.log("YOU WON");
+      this.newGame();
     } else
-      (boolean ? (console.log("keep playing")) : (console.log("you lost")))
+      console.log("keep playing");
+  }
+  loseGame = () => {
+    this.setState({
+      correct: false
+    })
+    console.log("you lost")
+    this.newGame()
   }
 
   // function bundling all game functions together
   clickFunc = (event) => {
     this.shuffleCards();
-    this.increaseScore();
     this.newHighScore();
-    this.checkClicked(event, this.checkIfWinLoss);
+    this.checkClicked(event);
   }
 
   // reset states for new game
@@ -112,8 +123,7 @@ class App extends Component {
     this.setState(
       {
         score: 0,
-        clicked: [],
-        correct: true
+        clicked: []
       }
     )
   }
