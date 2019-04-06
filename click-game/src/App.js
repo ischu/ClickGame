@@ -15,24 +15,24 @@ class App extends Component {
     score: 0,
     highScore: 0,
     correct: true,
-    clicked:[]
+    clicked: []
   }
   // METHODS
-  
+
   // increment score count
-  increaseScore= () =>{
-    let newScore=this.state.score+1;
+  increaseScore = () => {
+    let newScore = this.state.score + 1;
     this.setState(
-      {score:newScore}
+      { score: newScore }
     )
   }
 
   // set new high score when reached
-  newHighScore= () =>{
-    if (this.state.score >= this.state.highScore){
-      let newScore=this.state.score+1;
+  newHighScore = () => {
+    if (this.state.score >= this.state.highScore) {
+      let newScore = this.state.score + 1;
       this.setState(
-        {highScore: newScore}
+        { highScore: newScore }
       )
     }
   }
@@ -70,29 +70,30 @@ class App extends Component {
   }
 
   // function to check if guess is correct
-  checkCorrect= event => {
-    let cardId = event.target.id;
-    let idArray = this.state.clicked
-    console.log(cardId)
+  checkCorrect = event => {
+    const cardId = event.target.id;
+    const idArray = this.state.clicked;
+    const isInArr = idArray.filter((num) => { return num === cardId });
+    idArray.push(parseInt(cardId));
+    console.log(idArray, " is in arr: "+isInArr)
     // if clicked card's id is in array of clicked cards
-    if(idArray.filter(num=>num===cardId)){
+    if (isInArr) {
       // incorrect
       this.setState(
-        {correct:false}
-      );
-      console.log(this.state.clicked)
-    }else{
-      // correct- push id into array
-      idArray.push(cardId);
-      this.setState(
-        {clicked:idArray}
-      );
-      console.log(this.state.clicked)
+        { correct: false }
+      )
     }
+    else {
+      // correct- set clicked array
+      this.setState(
+        { clicked: idArray }
+      )
+    }
+    console.log(this.state.correct, this.state.clicked)
   }
 
   // function bundling all game functions together
-  clickFunc=(event)=>{
+  clickFunc = (event) => {
     this.shuffleCards();
     this.increaseScore();
     this.newHighScore();
@@ -100,10 +101,12 @@ class App extends Component {
   }
 
   // reset states for new game
-  newGame=()=>{
+  newGame = () => {
     this.setState(
-      {score:0,
-      clicked:[],}
+      {
+        score: 0,
+        clicked: [],
+      }
     )
   }
 
