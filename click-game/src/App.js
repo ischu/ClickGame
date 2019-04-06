@@ -14,21 +14,20 @@ class App extends Component {
     images,
     score: 0,
     highScore: 0,
-    correct: true
+    correct: true,
+    clicked:[]
   }
   // METHODS
   
+  // increment score count
   increaseScore= () =>{
     let newScore=this.state.score+1;
     this.setState(
       {score:newScore}
     )
   }
-  resetScore=()=>{
-    this.setState(
-      {score:0}
-    )
-  }
+
+  // set new high score when reached
   newHighScore= () =>{
     if (this.state.score >= this.state.highScore){
       let newScore=this.state.score+1;
@@ -56,21 +55,58 @@ class App extends Component {
     }
     return arr;
   }
+
+  // function to shuffle image  cards
   shuffleCards = () => {
     // copy images array
     const copyArray = images.slice(0);
-    console.log(copyArray + " New Image Array")
     // function for shuffling an array (from stack overflow)
     let shuffledArray = this.shuffle(copyArray)
-    console.log(shuffledArray);
 
     // set this.state.images to new shuffled array,
     this.setState(
       { images: shuffledArray }
     );
-    this.increaseScore();
-    this.newHighScore()
   }
+
+  // function to check if guess is correct
+  checkCorrect= event => {
+    let cardId = event.target.id;
+    let idArray = this.state.clicked
+    console.log(cardId)
+    // if clicked card's id is in array of clicked cards
+    if(idArray.filter(num=>num===cardId)){
+      // incorrect
+      this.setState(
+        {correct:false}
+      );
+      console.log(this.state.clicked)
+    }else{
+      // correct- push id into array
+      idArray.push(cardId);
+      this.setState(
+        {clicked:idArray}
+      );
+      console.log(this.state.clicked)
+    }
+  }
+
+  // function bundling all game functions together
+  clickFunc=(event)=>{
+    this.shuffleCards();
+    this.increaseScore();
+    this.newHighScore();
+    this.checkCorrect(event)
+  }
+
+  // reset states for new game
+  newGame=()=>{
+    this.setState(
+      {score:0,
+      clicked:[],}
+    )
+  }
+
   render() {
     return (
       <div className="App">
@@ -84,9 +120,10 @@ class App extends Component {
           {this.state.images.map(image => (
             <ImgCard
               key={image.id}
+              id={image.id}
               name={image.name}
               url={image.url}
-              shuffle={this.shuffleCards}
+              shuffle={this.clickFunc}
             />
           ))}
         </Container>
