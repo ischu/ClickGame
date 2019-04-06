@@ -70,7 +70,7 @@ class App extends Component {
   }
 
   // function to check if guess is correct
-  checkClicked = event => {
+  checkClicked = (event, cb) => {
     const cardId = parseInt(event.target.id);
     // copy of clicked array
     const idArray = this.state.clicked.slice(0);
@@ -90,12 +90,13 @@ class App extends Component {
         { clicked: idArray }
       )
     }
+    cb(this.state.clicked, this.state.correct)
   }
-  checkIfWinLoss = () => {
-    if (this.state.clicked.length >= 4) {
+  checkIfWinLoss = (array, boolean) => {
+    if (array.length >= 4) {
       console.log("YOU WON")
     } else
-      (this.state.correct ? (console.log("keep playing")) : (console.log("you lost")))
+      (boolean ? (console.log("keep playing")) : (console.log("you lost")))
   }
 
   // function bundling all game functions together
@@ -103,8 +104,7 @@ class App extends Component {
     this.shuffleCards();
     this.increaseScore();
     this.newHighScore();
-    this.checkClicked(event);
-    this.checkIfWinLoss();
+    this.checkClicked(event, this.checkIfWinLoss);
   }
 
   // reset states for new game
@@ -113,6 +113,7 @@ class App extends Component {
       {
         score: 0,
         clicked: [],
+        correct: true
       }
     )
   }
@@ -122,6 +123,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Scoreboard
+          correct={this.state.correct}
           score={this.state.score}
           highScore={this.state.highScore}
         />

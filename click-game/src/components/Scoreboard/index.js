@@ -4,10 +4,11 @@ import './style.css'
 function Scoreboard(props) {
     // state- correct/incorrect, score, & high score
     return (
-        <div className="d-flex">
+        <div className="d-flex mx-3">
             <span id="correctness">
-                Incorrect/Correct ternery
+                {props.correct?"Correct":"Incorrect"}
             </span>
+            <hr/>
             <span id="scoreCounters">
                 Score: {props.score} High Score: {props.highScore}
             </span>
