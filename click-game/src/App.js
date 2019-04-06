@@ -16,7 +16,8 @@ class App extends Component {
     highScore: 0,
     correct: true,
     clicked: [],
-    gameOver: null
+    gameOver: null,
+    begin: "Click an image to begin!"
   }
   // METHODS
 
@@ -72,7 +73,9 @@ class App extends Component {
 
   // function to check if guess is correct
   checkClicked = (event) => {
+    // on click-remove begin message, set correct and gameOver to defaults
     this.setState({
+      begin: false,
       correct: true,
       gameOver: null
     })
@@ -130,6 +133,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Scoreboard
+          begin={this.state.begin}
           correct={this.state.correct}
           gameOver={this.state.gameOver}
           score={this.state.score}
