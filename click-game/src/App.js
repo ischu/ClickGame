@@ -18,6 +18,26 @@ class App extends Component {
   }
   // METHODS
   
+  increaseScore= () =>{
+    let newScore=this.state.score+1;
+    this.setState(
+      {score:newScore}
+    )
+  }
+  resetScore=()=>{
+    this.setState(
+      {score:0}
+    )
+  }
+  newHighScore= () =>{
+    if (this.state.score >= this.state.highScore){
+      let newScore=this.state.score+1;
+      this.setState(
+        {highScore: newScore}
+      )
+    }
+  }
+
   // function for shuffling an array (from stack overflow)
   shuffle(arr) {
     // my note- this sets all these variable to equal each other
@@ -47,13 +67,18 @@ class App extends Component {
     // set this.state.images to new shuffled array,
     this.setState(
       { images: shuffledArray }
-    )
+    );
+    this.increaseScore();
+    this.newHighScore()
   }
   render() {
     return (
       <div className="App">
         <Header />
-        <Scoreboard />
+        <Scoreboard
+          score={this.state.score}
+          highScore={this.state.highScore}
+        />
         <Container>
           {/* maps images to jsx elements */}
           {this.state.images.map(image => (
