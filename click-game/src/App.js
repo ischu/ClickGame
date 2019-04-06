@@ -71,11 +71,11 @@ class App extends Component {
 
   // function to check if guess is correct
   checkCorrect = event => {
-    const cardId = event.target.id;
-    const idArray = this.state.clicked;
-    const isInArr = idArray.filter((num) => { return num === cardId });
-    idArray.push(parseInt(cardId));
-    console.log(idArray, " is in arr: "+isInArr)
+    const cardId = parseInt(event.target.id);
+    // copy of clicked array
+    const idArray = this.state.clicked.slice(0);
+    // find if target card id is in array
+    const isInArr = idArray.find((num) => num === cardId);
     // if clicked card's id is in array of clicked cards
     if (isInArr) {
       // incorrect
@@ -85,11 +85,12 @@ class App extends Component {
     }
     else {
       // correct- set clicked array
+      idArray.push(cardId);
       this.setState(
         { clicked: idArray }
       )
     }
-    console.log(this.state.correct, this.state.clicked)
+
   }
 
   // function bundling all game functions together
