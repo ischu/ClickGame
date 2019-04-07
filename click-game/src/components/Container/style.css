@@ -1,4 +1,7 @@
-.container {
+.imgbox {
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: row;
+    align-items: space-evenly;
+    height: 80vh
 }

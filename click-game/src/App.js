@@ -17,7 +17,7 @@ class App extends Component {
     correct: true,
     clicked: [],
     gameOver: null,
-    begin: "Click an image to begin!"
+    begin: "Click an Image to Begin!"
   }
   // METHODS
 

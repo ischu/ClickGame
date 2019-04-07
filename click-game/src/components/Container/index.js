@@ -1,8 +1,9 @@
 import React from 'react';
+import "./style.css"
 
 function Container(props) {
         return (
-            <div className=" container d-flex bg-primary">
+            <div className="imgbox container d-flex bg-primary">
                 {props.children}
             </div>
         )
