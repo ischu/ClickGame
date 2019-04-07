@@ -86,7 +86,8 @@ class App extends Component {
     // copy of clicked array
     const idArray = this.state.clicked.slice(0);
     // if clicked card's id is in array of clicked cards
-    if (idArray.includes(cardId)) { this.loseGame() }
+    if (idArray.includes(cardId)) 
+      { this.loseGame() }
     else {
       this.increaseScore()
       // update array of clicked items 
