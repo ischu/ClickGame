@@ -3,7 +3,7 @@ import "./style.css"
 
 function Container(props) {
         return (
-            <div className="imgbox container d-flex bg-primary">
+            <div className="imgbox container-fluid d-flex">
                 {props.children}
             </div>
         )

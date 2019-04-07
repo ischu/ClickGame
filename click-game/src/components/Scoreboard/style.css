@@ -1,0 +1,13 @@
+#scoreboard{
+    height: 20%;
+    width:100%;
+    position: fixed;
+    top: 0;
+    text-align: center;
+    justify-items: center;
+    align-items: center
+}
+#scoreboard>span{
+    margin: auto;
+    font-size: 2rem;
+}

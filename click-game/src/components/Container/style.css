@@ -1,7 +1,8 @@
 .imgbox {
-    justify-content: center;
+    background-color: skyblue;
+    justify-content: space-between;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: space-evenly;
+    align-items: space-between;
     height: 80vh
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from './components/Header';
+import Header from './components/Hero';
 import Scoreboard from './components/Scoreboard';
 import Container from './components/Container';
 import ImgCard from './components/ImgCard';
@@ -97,7 +97,8 @@ class App extends Component {
   };
 
   winGameCheck = (array) => {
-    if (array.length === 4) {
+    // when all 12 have been guessed- win
+    if (array.length === 12) {
       this.setState({
         gameOver: "You Win!"
       });

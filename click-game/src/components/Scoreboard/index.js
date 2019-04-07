@@ -4,7 +4,7 @@ import './style.css'
 function Scoreboard(props) {
     // state- correct/incorrect, score, & high score
     return (
-        <div className="d-flex mx-3">
+        <div id="scoreboard" className="d-flex m-0 bg-info">
             <span id="banner">
                 {props.begin || (props.gameOver || (props.correct?"Correct":"Incorrect-You Lose"))}
             </span>
