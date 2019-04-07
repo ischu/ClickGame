@@ -1,8 +1,9 @@
 .imgbox {
     background-color: skyblue;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: space-between;
-    height: 80vh
+    height: 85vh;
+    padding-top: 5vh;
 }

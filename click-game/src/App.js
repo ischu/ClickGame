@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from './components/Hero';
+import './index.css';
+import Hero from './components/Hero';
 import Scoreboard from './components/Scoreboard';
 import Container from './components/Container';
 import ImgCard from './components/ImgCard';
+import Footer from './components/Footer';
 import images from './images.json'
 
 class App extends Component {
   // STATE
-  // set image state to json, score and high score to 0, correct to true
-  state = {
-    images,
-    score: 0,
-    highScore: 0,
-    correct: true,
-    clicked: [],
-    gameOver: null,
-    begin: "Click an Image to Begin!"
+  constructor(props) {
+    super(props)
+    this.state = {
+      images,
+      score: 0,
+      highScore: 0,
+      correct: true,
+      clicked: [],
+      gameOver: false,
+      begin: "Click an Image to Begin!"
+    }
   }
   // METHODS
 
@@ -77,7 +80,7 @@ class App extends Component {
     this.setState({
       begin: false,
       correct: true,
-      gameOver: null
+      gameOver: false
     })
     const cardId = parseInt(event.target.id);
     // copy of clicked array
@@ -100,7 +103,7 @@ class App extends Component {
     // when all 12 have been guessed- win
     if (array.length === 12) {
       this.setState({
-        gameOver: "You Win!"
+        gameOver: true
       });
       this.newGame();
     }
@@ -132,7 +135,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Hero />
         <Scoreboard
           begin={this.state.begin}
           correct={this.state.correct}
@@ -148,10 +151,16 @@ class App extends Component {
               id={image.id}
               name={image.name}
               url={image.url}
+              gameOver={this.state.gameOver}
+              correct={this.state.correct}
               shuffle={this.clickFunc}
             />
           ))}
         </Container>
+        <Footer
+          gameOver={this.state.gameOver}
+          correct={this.state.correct}
+        />
       </div>
     );
   }

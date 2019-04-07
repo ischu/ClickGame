@@ -1,5 +1,5 @@
 #scoreboard{
-    height: 20%;
+    height: 15vh;
     width:100%;
     position: fixed;
     top: 0;
@@ -7,7 +7,10 @@
     justify-items: center;
     align-items: center
 }
-#scoreboard>span{
+#scoreboard>p{
     margin: auto;
-    font-size: 2rem;
+    font-size: 2rem
+}
+#scoreCounters>span{
+    padding-left: 2rem
 }
